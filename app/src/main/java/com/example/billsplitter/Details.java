@@ -3,8 +3,8 @@ package com.example.billsplitter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Details extends AppCompatActivity implements input_dialog.input_dialogListener {
@@ -17,13 +17,14 @@ public class Details extends AppCompatActivity implements input_dialog.input_dia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        Bundle extras = getIntent().getExtras();
+        final Bundle extras = getIntent().getExtras();
         String ia = extras.getString("ia");
         String ib = extras.getString("ib");
         pa = extras.getString("ba");
         pb = extras.getString("bb");
         TextView item1 = findViewById(R.id.itemone);
         TextView item2 = findViewById(R.id.itemtwo);
+        Button save = findViewById(R.id.save);
         item1.setText(ia);
         item2.setText(ib);
 
@@ -40,6 +41,17 @@ public class Details extends AppCompatActivity implements input_dialog.input_dia
             public void onClick(View view) {
                 x = 1;
                 openDialog();
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bu = new Bundle(extras);
+                Intent i = new Intent(Details.this, result.class);
+                bu.putSerializable("data",det);
+                i.putExtras(bu);
+                startActivity(i);
             }
         });
     }

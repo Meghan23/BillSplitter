@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Details"></activity>
+        <activity android:name=".result"></activity>
+        <activity android:name=".Details" />
         <activity android:name=".Order" />
-        <activity android:name=".Home">
+        <activity android:name=".Home"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
