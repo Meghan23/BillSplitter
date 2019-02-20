@@ -20,7 +20,7 @@ public class result extends AppCompatActivity {
         double p1 = bu.getDouble("pa");
         double p2 = bu.getDouble("pb");
         double[] p = new double[]{p1, p2};
-        int[] fin = new int[2];
+        double[] fin = new double[2];
         int n;
 
         for(int i = 0; i < 2; i++){
@@ -31,7 +31,7 @@ public class result extends AppCompatActivity {
             }
             for(int j = 0; j < 2; j++){
                 if(data[i][j] == 1)
-                    fin[j]+=(p[j]/n);
+                    fin[j]+=(p[i]/n);
             }
         }
 
@@ -44,8 +44,8 @@ public class result extends AppCompatActivity {
 
         pa.setText(b1);
         pb.setText(b2);
-        c1.setText(Integer.toString(fin[0]));
-        c2.setText(Integer.toString(fin[1]));
+        c1.setText(Double.toString(fin[0]));
+        c2.setText(Double.toString(fin[1]));
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
