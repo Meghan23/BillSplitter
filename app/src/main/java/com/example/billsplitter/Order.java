@@ -32,13 +32,15 @@ public class Order extends AppCompatActivity {
                 double p2 = Double.parseDouble(pb.getText().toString());
                 String b1 = ba.getText().toString();
                 String b2 = bb.getText().toString();
+                Bundle extras = new Bundle();
+                extras.putString("ia",i1);
+                extras.putString("ib",i2);
+                extras.putString("ba",b1);
+                extras.putString("bb",b2);
+                extras.putDouble("pa",p1);
+                extras.putDouble("pb",p2);
                 Intent i = new Intent(Order.this, Details.class);
-                i.putExtra("pa",p1);
-                i.putExtra("pb",p2);
-                i.putExtra("ia",i1);
-                i.putExtra("ib",i2);
-                i.putExtra("ba",b1);
-                i.putExtra("bb",b2);
+                i.putExtras(extras);
                 startActivity(i);
             }
         });

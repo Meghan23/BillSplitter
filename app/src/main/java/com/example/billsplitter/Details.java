@@ -16,17 +16,15 @@ public class Details extends AppCompatActivity implements input_dialog.input_dia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        Intent i = getIntent();
-        final String pa = i.getStringExtra("ba");
-        final String pb = i.getStringExtra("bb");
-        String ia = i.getStringExtra("i1");
-        String ib = i.getStringExtra("i2");
+        Bundle extras = getIntent().getExtras();
+        String ia = extras.getString("ia");
+        String ib = extras.getString("ib");
+        String pa = extras.getString("ba");
+        String pb = extras.getString("bb");
         TextView item1 = findViewById(R.id.itemone);
         TextView item2 = findViewById(R.id.itemtwo);
         item1.setText(ia);
         item2.setText(ib);
-        Log.d("FIRSTI",item1.getText().toString());
-        Log.d("SECONDI",item2.getText().toString());
 
         item1.setOnClickListener(new View.OnClickListener() {
             @Override
