@@ -14,23 +14,26 @@
     android:orientation="horizontal">
 
     <EditText
-        android:id="@+id/item1"
+        android:id="@+id/itema"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimaryDark"
         android:text="Name"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:inputType="text"
+        />
 
     <EditText
         android:id="@+id/price1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:text="Price"
         android:background="@color/colorPrimaryDark"
-        android:paddingLeft="20dp"
-        android:text="Name"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:inputType="numberDecimal"/>
 
 </LinearLayout>
 
@@ -47,17 +50,19 @@
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimaryDark"
             android:text="Name"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/price2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="50dp"
+            android:text="Price"
             android:background="@color/colorPrimaryDark"
-            android:paddingLeft="20dp"
-            android:text="Name"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:inputType="numberDecimal"/>
 
     </LinearLayout>
 
@@ -67,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="50dp"
         android:paddingLeft="70dp"
         android:paddingRight="70dp"
         android:text="Next"
