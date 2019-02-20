@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class Details extends AppCompatActivity implements input_dialog.input_dialogListener {
 
+    String pa, pb;
     final int[][] det = new int[2][2] ;
     int x;
 
@@ -19,8 +20,8 @@ public class Details extends AppCompatActivity implements input_dialog.input_dia
         Bundle extras = getIntent().getExtras();
         String ia = extras.getString("ia");
         String ib = extras.getString("ib");
-        String pa = extras.getString("ba");
-        String pb = extras.getString("bb");
+        pa = extras.getString("ba");
+        pb = extras.getString("bb");
         TextView item1 = findViewById(R.id.itemone);
         TextView item2 = findViewById(R.id.itemtwo);
         item1.setText(ia);
@@ -44,7 +45,11 @@ public class Details extends AppCompatActivity implements input_dialog.input_dia
     }
 
     public void openDialog(){
+        Bundle b = new Bundle();
+        b.putString("pa",pa);
+        b.putString("pb",pb);
         input_dialog in = new input_dialog();
+        in.setArguments(b);
         in.show(getSupportFragmentManager(),"checks");
     }
 

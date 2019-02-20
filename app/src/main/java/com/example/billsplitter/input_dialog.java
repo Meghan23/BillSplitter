@@ -17,9 +17,14 @@ public class input_dialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder build = new AlertDialog.Builder(getActivity());
         LayoutInflater inf = getActivity().getLayoutInflater();
+        Bundle bu = getArguments();
+        String pa = bu.getString("pa");
+        String pb = bu.getString("pb");
         final View view = inf.inflate(R.layout.input_dialogue, null);
         final CheckBox chk1 = view.findViewById(R.id.chk1);
+        chk1.setText(pa);
         final CheckBox chk2 = view.findViewById(R.id.chk2);
+        chk2.setText(pb);
         build.setView(view)
                 .setTitle("Select bois")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
