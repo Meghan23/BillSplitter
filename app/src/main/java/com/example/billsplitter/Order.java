@@ -32,7 +32,7 @@ public class Order extends AppCompatActivity {
                 final double p2 = Double.parseDouble(pb.getText().toString());
                 final String b1 = ba.getText().toString();
                 final String b2 = bb.getText().toString();
-                Intent i = new Intent(Order.this, Order.class);
+                Intent i = new Intent(Order.this, Details.class);
                 i.putExtra("pa",p1);
                 i.putExtra("pb",p2);
                 i.putExtra("ia",i1);
