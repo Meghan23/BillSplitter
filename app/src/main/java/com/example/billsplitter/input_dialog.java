@@ -26,7 +26,7 @@ public class input_dialog extends AppCompatDialogFragment {
         final CheckBox chk2 = view.findViewById(R.id.chk2);
         chk2.setText(pb);
         build.setView(view)
-                .setTitle("Select bois")
+                .setTitle("Assign this dish to : ")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
