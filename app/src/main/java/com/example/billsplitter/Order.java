@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class Order extends AppCompatActivity {
 
-    private EditText ia, ib, pa, pb;
+    private EditText ia, ib, pa, pb, ba, bb;
     private Button next;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,19 +20,25 @@ public class Order extends AppCompatActivity {
         ib = findViewById(R.id.item2);
         pb = findViewById(R.id.price2);
         next = findViewById(R.id.next);
-        final String i1 = ia.getText().toString();
-        final String i2 = ib.getText().toString();
-        final int p1 = Integer.parseInt(pa.getText().toString());
-        final int p2 = Integer.parseInt(pb.getText().toString());
+        ba = findViewById(R.id.person1);
+        bb = findViewById(R.id.person2);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Order.this, People.class);
+                final String i1 = ia.getText().toString();
+                final String i2 = ib.getText().toString();
+                final double p1 = Double.parseDouble(pa.getText().toString());
+                final double p2 = Double.parseDouble(pb.getText().toString());
+                final String b1 = ba.getText().toString();
+                final String b2 = bb.getText().toString();
+                Intent i = new Intent(Order.this, Order.class);
                 i.putExtra("pa",p1);
                 i.putExtra("pb",p2);
                 i.putExtra("ia",i1);
                 i.putExtra("ib",i2);
+                i.putExtra("ba",b1);
+                i.putExtra("bb",b2);
                 startActivity(i);
             }
         });
