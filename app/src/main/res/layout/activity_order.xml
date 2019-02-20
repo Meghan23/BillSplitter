@@ -17,10 +17,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="31dp"
         android:layout_marginTop="66dp"
-        android:background="@color/colorPrimaryDark"
         android:inputType="text"
         android:text="Name"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
     <EditText
         android:id="@+id/person1"
@@ -31,10 +30,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="33dp"
         android:layout_marginTop="238dp"
-        android:background="@color/colorPrimaryDark"
         android:inputType="text"
         android:text="Person1"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
     <EditText
         android:id="@+id/person2"
@@ -45,10 +43,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="190dp"
         android:layout_marginTop="251dp"
-        android:background="@color/colorPrimaryDark"
         android:inputType="text"
         android:text="person2"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
     <EditText
         android:id="@+id/price1"
@@ -58,10 +55,9 @@
         android:layout_alignTop="@+id/itema"
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="108dp"
-        android:background="@color/colorPrimaryDark"
         android:inputType="numberDecimal"
         android:text="Price"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
 
     <EditText
@@ -72,10 +68,9 @@
         android:layout_alignStart="@+id/itema"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="151dp"
-        android:background="@color/colorPrimaryDark"
         android:inputType="text"
         android:text="Name"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
     <EditText
         android:id="@+id/price2"
@@ -84,10 +79,9 @@
         android:layout_alignStart="@+id/price1"
         android:layout_alignTop="@+id/item2"
         android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimaryDark"
         android:inputType="numberDecimal"
         android:text="Price"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
     <Button
         android:id="@+id/next"
@@ -98,10 +92,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="76dp"
         android:layout_marginBottom="187dp"
-        android:background="@color/colorPrimaryDark"
         android:paddingLeft="70dp"
         android:paddingRight="70dp"
         android:text="Next"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
 </RelativeLayout>
