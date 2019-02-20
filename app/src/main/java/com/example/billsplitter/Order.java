@@ -26,12 +26,12 @@ public class Order extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String i1 = ia.getText().toString();
-                final String i2 = ib.getText().toString();
-                final double p1 = Double.parseDouble(pa.getText().toString());
-                final double p2 = Double.parseDouble(pb.getText().toString());
-                final String b1 = ba.getText().toString();
-                final String b2 = bb.getText().toString();
+                String i1 = ia.getText().toString();
+                String i2 = ib.getText().toString();
+                double p1 = Double.parseDouble(pa.getText().toString());
+                double p2 = Double.parseDouble(pb.getText().toString());
+                String b1 = ba.getText().toString();
+                String b2 = bb.getText().toString();
                 Intent i = new Intent(Order.this, Details.class);
                 i.putExtra("pa",p1);
                 i.putExtra("pb",p2);
