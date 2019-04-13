@@ -3,9 +3,11 @@ package com.example.billsplitter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import java.util.ArrayList;
 
 public class result extends AppCompatActivity {
 
@@ -13,40 +15,20 @@ public class result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        Bundle bu = getIntent().getExtras();
-        int[][] data = (int[][]) bu.getSerializable("data");
-        String b1 = bu.getString("ba");
-        String b2 = bu.getString("bb");
-        double p1 = bu.getDouble("pa");
-        double p2 = bu.getDouble("pb");
-        double[] p = new double[]{p1, p2};
-        double[] fin = new double[2];
-        int n;
-
-        for(int i = 0; i < 2; i++){
-            n = 0;
-            for(int j = 0; j < 2; j++){
-                if(data[i][j] == 1)
-                    n++;
-            }
-            for(int j = 0; j < 2; j++){
-                if(data[i][j] == 1)
-                    fin[j]+=(p[i]/n);
-            }
-        }
-
-        TextView pa, pb, c1, c2;
-        Button b = findViewById(R.id.home);
-        pa = findViewById(R.id.pone);
-        pb = findViewById(R.id.ptwo);
-        c1 = findViewById(R.id.cone);
-        c2 = findViewById(R.id.ctwo);
-
-        pa.setText(b1);
-        pb.setText(b2);
-        c1.setText(Double.toString(fin[0]));
-        c2.setText(Double.toString(fin[1]));
-
+        int[][] map;
+        RecyclerView resRecyc;
+        ResultAdapter resAdapt;
+        Button b;
+        map = (int[][]) getIntent().getSerializableExtra("mapping");
+        ArrayList<Person> perData = (ArrayList<Person>) getIntent().getSerializableExtra("PerData");
+        ArrayList<OrderModel> ordData = (ArrayList<OrderModel>) getIntent().getSerializableExtra("OrdData");
+        double[] fin = (double[]) getIntent().getSerializableExtra("FinalSplit");
+        resRecyc = findViewById(R.id.resultRecycler);
+        resRecyc.setHasFixedSize(true);
+        resRecyc.setLayoutManager(new LinearLayoutManager(this));
+        resAdapt = new ResultAdapter(this, perData, ordData, map, fin);
+        resRecyc.setAdapter(resAdapt);
+        b = findViewById(R.id.home);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

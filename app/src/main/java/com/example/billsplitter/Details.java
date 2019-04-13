@@ -3,71 +3,65 @@ package com.example.billsplitter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
+import java.util.ArrayList;
 
-public class Details extends AppCompatActivity implements input_dialog.input_dialogListener {
+public class Details extends AppCompatActivity {
 
-    String pa, pb;
-    final int[][] det = new int[2][2] ;
-    int x;
+    private PersonAdapter perAdap;
+    private ArrayList<Person> perData = new ArrayList<>();
+    private ArrayList<OrderModel> ordData;
+    private EditText ia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        final Bundle extras = getIntent().getExtras();
-        String ia = extras.getString("ia");
-        String ib = extras.getString("ib");
-        pa = extras.getString("ba");
-        pb = extras.getString("bb");
-        TextView item1 = findViewById(R.id.itemone);
-        TextView item2 = findViewById(R.id.itemtwo);
+        RecyclerView perRecyc;
+        ordData = (ArrayList<OrderModel>) getIntent().getSerializableExtra("OrdData");
+        perRecyc = findViewById(R.id.peopleRecycler);
+        perRecyc.setHasFixedSize(true);
+        perRecyc.setLayoutManager(new LinearLayoutManager(this));
+        perAdap = new PersonAdapter(this, perData);
+        perRecyc.setAdapter(perAdap);
         Button save = findViewById(R.id.save);
-        item1.setText(ia);
-        item2.setText(ib);
-
-        item1.setOnClickListener(new View.OnClickListener() {
+        Button add = findViewById(R.id.add);
+        ia = findViewById(R.id.personName);
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                x = 0;
-                openDialog();
+                String n = ia.getText().toString();
+                if (n.equals("")) {
+                    Toast.makeText(Details.this, "Input Text Is Empty.. Please Enter Some Text", Toast.LENGTH_SHORT).show();
+                } else {
+                    Person temp = new Person(n);
+                    perAdap.addItem(temp);
+                    perAdap.notifyDataSetChanged();
+                    ia.setText("");
+                }
             }
         });
-
-        item2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                x = 1;
-                openDialog();
-            }
-        });
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bu = new Bundle(extras);
-                Intent i = new Intent(Details.this, result.class);
-                bu.putSerializable("data",det);
-                i.putExtras(bu);
-                startActivity(i);
+                perData = perAdap.getPerList();
+                if (perData.size() != 0) {
+                    Intent i = new Intent(Details.this, Assign.class);
+                    i.putExtra("OrdData", ordData);
+                    i.putExtra("PerData", perData);
+                    startActivity(i);
+                }
+                else{
+                    Toast.makeText(Details.this, "0 persons", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
 
-    public void openDialog(){
-        Bundle b = new Bundle();
-        b.putString("pa",pa);
-        b.putString("pb",pb);
-        input_dialog in = new input_dialog();
-        in.setArguments(b);
-        in.show(getSupportFragmentManager(),"checks");
-    }
-
-    @Override
-    public void applyChanges(int a, int b) {
-        det[x][0] = a;
-        det[x][1] = b;
-    }
 }

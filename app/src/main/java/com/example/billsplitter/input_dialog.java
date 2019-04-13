@@ -6,41 +6,45 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
+import java.util.ArrayList;
 
 public class input_dialog extends AppCompatDialogFragment {
-    int a, b ;
+
     private input_dialogListener listener;
+    private RecyclerView personRecyc;
+    private DialogAdapter diAdapt;
+    private ArrayList<Person> perData = new ArrayList<>();
+    private int pos;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder build = new AlertDialog.Builder(getActivity());
         LayoutInflater inf = getActivity().getLayoutInflater();
-        Bundle bu = getArguments();
-        String pa = bu.getString("pa");
-        String pb = bu.getString("pb");
-        final View view = inf.inflate(R.layout.input_dialogue, null);
-        final CheckBox chk1 = view.findViewById(R.id.chk1);
-        chk1.setText(pa);
-        final CheckBox chk2 = view.findViewById(R.id.chk2);
-        chk2.setText(pb);
+        View view = inf.inflate(R.layout.input_dialogue, null);
+        personRecyc = view.findViewById(R.id.personRecycler);
+        personRecyc.setHasFixedSize(true);
+        perData  = (ArrayList<Person>) getArguments().getSerializable("PerData");
+        pos = getArguments().getInt("pos");
+        personRecyc.setLayoutManager(new LinearLayoutManager(getContext()));
+        diAdapt = new DialogAdapter(getContext(), perData);
+        personRecyc.setAdapter(diAdapt);
+
         build.setView(view)
-                .setTitle("Assign this dish to : ")
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setTitle("Assign to : ")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 })
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(chk1.isChecked())
-                            a = 1;
-                        if(chk2.isChecked())
-                            b = 1;
-                        listener.applyChanges(a,b);
+                        listener.applyChanges(diAdapt.fetchAssigned());
                     }
                 });
         return build.create();
@@ -49,16 +53,15 @@ public class input_dialog extends AppCompatDialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        try{
+        try {
             listener = (input_dialogListener) context;
-        }
-        catch (ClassCastException e){
+        } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement inputdialoglistener");
         }
 
     }
 
-    public interface input_dialogListener{
-        void applyChanges(int a, int b);
+    public interface input_dialogListener {
+        void applyChanges(ArrayList<Integer> assigned);
     }
 }
